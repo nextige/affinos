@@ -35,3 +35,6 @@ Route::resource('/profile','ProfileController');
 
 Route::resource('/packages', PackagesController::class);
 Route::resource('/recurrances', RecurrencesController::class);
+
+
+Route::resource('/addons','AddonsController');

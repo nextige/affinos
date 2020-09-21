@@ -2,6 +2,10 @@
 
 @section('content')
 
+@php
+$address = \App\Address::all();
+@endphp
+
 
 <div class="page-container">
                 <!-- Page Inner -->
@@ -20,7 +24,6 @@
                                 <div class="d-flex align-items-center height-100">
                                 <div>
                                 <h4 class="login-title">{{ __('Register') }}</h4>
-
                                 <form method="POST" action="{{ route('register') }}">
                                      @csrf
                                      <div class="form-group">
@@ -28,11 +31,11 @@
                                      
 
 
-                                    <label for="name">{{ __('Name') }}</label>
+                                    <label for="name">{{ __('First Name') }}</label>
 
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('email')
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,6 +43,31 @@
 </div>
 
 
+                        <div class="form-group">
+
+                        <label for="name">{{ __('Last Name') }}</label>
+
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name">
+
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+
+                        <label for="phone">{{ __('phone') }}</label>
+
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
 
                         <div class="form-group">
 
@@ -54,8 +82,84 @@
                                 @enderror
                         </div>
 
+                        
+                        <div class="form-group">
+                            <label for="cagecode">{{ __('cagecode') }}</label>
+                            <input id="cagecode" type="text" class="form-control @error('cagecode') is-invalid @enderror" name="cagecode" value="{{ old('cagecode') }}" required autocomplete="cagecode">
 
+                            @error('cagecode')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="sams">{{ __('sams') }}</label>
+                            <input id="sams" type="text" class="form-control @error('sams') is-invalid @enderror" name="sams" value="{{ old('sams') }}" required autocomplete="sams">
 
+                            @error('sams')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="city">{{ __('city') }}</label>
+                            <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city">
+
+                            @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">{{ __('zip') }}</label>
+                            <input id="zip" type="text" class="form-control @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip">
+
+                            @error('zip')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="state">{{ __('state') }}</label>
+                            <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state">
+
+                            @error('state')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="country">{{ __('country') }}</label>
+                            <select class="form-control" name="country">
+                            @foreach($address as $country)
+                                <option @if($add->country_code == $user->country) selected @endif value="{{$country->country_code}}">{{ $country->country }}</option>
+                            @endforeach
+                            </select>
+                          
+                         
+                            <!-- <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country"> -->
+
+                            @error('country')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="address">{{ __('Address') }}</label>
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+
+                            @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>  
                         <div class="form-group ">
                             <label for="password">{{ __('Password') }}</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
