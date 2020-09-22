@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Address;
+use Illuminate\Support\Facades\Hash;
+use Session;    
 
 class ProfileController extends Controller
 {
@@ -45,24 +47,35 @@ class ProfileController extends Controller
                 $profile->country = $request->country;
                 $profile->address = $request->address;
                 $profile->save();
-               
+                Session::flash('message', 'Profile updated successfuly!');
                 return redirect()->back();
     }
     
-        public function  avatar(Request $request){
-           
-            if($request->file('image')){
-                $profile = $request->file('image');
-                $file_name = time() . '.' . $profile->getClientOriginalExtension();
-                $path = public_path('uploads/section_image');
-                $profile->move($path, $file_name);
-                $program->image = $file_name;
-            }
-           
-            User::save();
-
-            return redirect()->back();
+    public function avatar(Request $request){
+        $user = User::find($request->id);
+        if($request->file('image')){
+            $profile = $request->file('image');
+            $file_name = time() . '.' . $profile->getClientOriginalExtension();
+            $path = public_path('uploads/section_image');
+            $profile->move($path, $file_name);
+            $user->image = $file_name;
         }
+        $user->save();
+        Session::flash('message-profile', 'Profile image updated successfuly!');
+        return redirect()->back();
+    }
+
+    public function updatePassword(Request $request) {
+        $request->validate([
+            'password' => 'required',
+            'cpassword' => 'required|same:password',
+        ]);
+        $profile = User::find($request->id);
+        $profile->password = Hash::make($request->password);
+        $profile->save();
+        Session::flash('message-password', 'Password updated successfuly!');
+        return redirect()->back();
+    }
 
 }
 

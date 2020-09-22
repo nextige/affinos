@@ -18,8 +18,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-right btn-margin">
-                                        <a href="recurrence.html" class="btn btn-primary">
-                                            < Back</a> </div> </div> <div class="panel-body">
+                                        <a href="{{url('/recurrances')}}" class="btn btn-primary">
+                                            < Back</a> </div> </div>
+                                            @if(Session::has('message')) 
+                                            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                <p>{{ Session::get('message') }}</p>       
+                                            </div>
+                                            @endif 
+                                            <div class="panel-body">
                                                     <div class="panel-body">
                                                         <form action ="{{route('recurrances.update',  ['recurrance' => $plans->id])}}" method="post">
                                                             <input type="hidden" name="_method" value="PUT">

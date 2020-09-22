@@ -14,15 +14,16 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-right btn-margin">
-                                        <a href="packages.html" class="btn btn-primary">
-                                            < Back</a> </div> </div> <div
-                                                class="alert alert-success alert-dismissible fade in" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert"
-                                                    aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                    @if(Session::has('message'))
-                                                    <p>{{ Session::get('message') }}</p>
-                                                    @endif
-                                    </div>
+                                        <a href="{{url('/addons')}}" class="btn btn-primary">
+                                            < Back</a> 
+                                    </div> 
+                                </div>
+                                @if(Session::has('message')) 
+                                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <p>{{ Session::get('message') }}</p>
+                                </div>
+                                @endif
                                     <div class="panel-body">
                                             <div class="panel-body">
                                                 <form method = "Post" action="{{route('addons.store')}}">

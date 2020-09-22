@@ -93,11 +93,6 @@
                 <div class="page-sidebar-menu">
                     <ul class="accordion-menu">
                         <li>
-                            <a href="{{url('/home')}}">
-                                <i class="menu-icon icon-home2"></i><span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{url('/profile')}}">
                                 <i class="menu-icon icon-user"></i><span>Profile</span>
                             </a>

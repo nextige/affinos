@@ -49,12 +49,10 @@
                                                         <form action ="{{route('packages.destroy', ['package' => $package->id])}}" method="post">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
-                                                            <button type="submit" class="btn btn-danger">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </button>
                                                         </form>
-                                                        <a class="btn btn-success btn-addon btn-sm" href=""> <i
-                                                                class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                                

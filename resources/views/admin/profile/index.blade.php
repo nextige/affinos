@@ -12,6 +12,12 @@
                     <div class="panel-heading clearfix">
                         <h4 class="panel-title">Basic Information</h4>
                     </div>
+                    @if(Session::has('message')) 
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <p>{{ Session::get('message') }}</p>       
+                    </div>
+                    @endif
                     <div class="panel-body">
                             <div class="panel-body">
                                 <form method = "POST" action="{{route('profile.store')}}">
@@ -24,6 +30,11 @@
                                                     Name</label>
                                                 <input type="text" name="name" class="form-control"
                                                     value = '{{$user->name}}'>
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                    
@@ -33,6 +44,11 @@
                                                 <label>Last Name</label>
                                                 <input type="text" name="last_name" class="form-control"
                                                     placeholder="Last Name" value="{{$user->last_name}}">
+                                                @error('last_name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -40,6 +56,11 @@
                                                 <label>Phone No.</label>
                                                 <input type="text" name="phone" value="{{$user->phone}}" class="form-control"
                                                     placeholder="Phone No.">
+                                                @error('phone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -47,6 +68,11 @@
                                                 <label>Email Address</label>
                                                 <input type="email" name="email" class="form-control"
                                                 value='{{$user->email}}'>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -54,6 +80,11 @@
                                                 <label>Cage Code</label>
                                                 <input type="text" value="{{$user->cagecode}}" name="cagecode" class="form-control"
                                                     placeholder="Code">
+                                                @error('cagecode')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -76,12 +107,22 @@
                                             <div class="form-group">
                                                 <label>City</label>
                                                 <input type="text" value="{{$user->city}}" name="city" class="form-control" placeholder="City">
+                                                @error('cagecode')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Zip</label>
                                                 <input type="text" value="{{$user->zip}}" name="zip" class="form-control" placeholder="Zip">
+                                                @error('zip')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -93,6 +134,11 @@
                                                         <option @if($add->state_code == $user->state) selected @endif value="{{ $add->state_code }}">{{ $add->state }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('state')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -104,6 +150,11 @@
                                                         <option @if($add->country_code == $user->country) selected @endif value="{{$country->country_code}}">{{ $country->country }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('country')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -111,6 +162,7 @@
                                                 <label>Address</label>
                                                 <textarea name="address" class="form-control" rows="3"
                                                     placeholder="Address">{{$user->address}}</textarea>
+                                                    Country
                                             </div>
                                         </div>
 
@@ -125,10 +177,18 @@
                     <div class="panel-heading clearfix">
                         <h4 class="panel-title">Update Photo</h4>
                     </div>
+                    @if(Session::has('message-profile')) 
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <p>{{ Session::get('message-profile') }}</p>       
+                    </div>
+                    @endif
                     <div class="panel-body">
                        
                             <div class="panel-body">
                                 <form method="POST"  action="{{route('profileavtar')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $user->id }}" />
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -140,7 +200,7 @@
                                                     </div>
                                                     <div class="avatar-preview">
                                                         <div id="imagePreview"
-                                                            src="{{url('uploads/section_image')}}>
+                                                            src="{{url('uploads/section_image/') .'/'. $user->image }}">
                                                         </div>
                                                     </div>
 
@@ -159,29 +219,35 @@
                     <div class="panel-heading clearfix">
                         <h4 class="panel-title">Change Password</h4>
                     </div>
+                    @if(Session::has('message-password')) 
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <p>{{ Session::get('message-password') }}</p>       
+                    </div>
+                    @endif
                     <div class="panel-body">
-                        <form>
-                            <div class="panel-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="text"  name=password class="form-control" value='{{$user->password}}'>
-                                            </div>
+                        <div class="panel-body">
+                            <form method="post" action="{{route('updatepassword')}}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $user->id }}" />
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="password"  name='password' placeholder="Password" class="form-control">
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Confirm Password</label>
-                                                <input type="text" name="cpassword" class="form-control" placeholder="Confirm Password">
-                                            </div>
-                                        </div>
-
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update Password</button>
-                                </form>
-                            </div>
-                        </form>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
