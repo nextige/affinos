@@ -84,7 +84,7 @@
                                                             <div class="form-group">
                                                                 <label>Addons</label>
                                                                 <select name="addon_name[]" class="form-control">
-                                                                    <option>Addon Name</otion>
+                                                                    <option value="">Addon Name</otion>
                                                                     @foreach($addons as $addon)
                                                                         <option value="{{$addon->id}}">{{$addon->name}}</otion>
                                                                     @endforeach

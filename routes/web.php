@@ -32,6 +32,7 @@ Route::resource('/sections','SectionController');
 
 Route::resource('/pages','PageController');
 Route::resource('/profile','ProfileController');
+Route::post("profileavtar", "ProfileController@avatar")->name("profileavtar");
 
 Route::resource('/packages', PackagesController::class);
 Route::resource('/recurrances', RecurrencesController::class);
