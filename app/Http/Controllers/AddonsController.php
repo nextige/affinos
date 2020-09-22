@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Recurrance;
+use App\Addon;
 use Session;
 
-class RecurrencesController extends Controller
+class AddonsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class RecurrencesController extends Controller
      */
     public function index()
     {
-        $recurrances = Recurrance::all();
-        return view('admin.recurrances.index', compact('recurrances'));
+        $addons = Addon::all();
+        return view('admin.addons.index', compact('addons'));
     }
 
     /**
@@ -26,7 +26,7 @@ class RecurrencesController extends Controller
      */
     public function create()
     {
-        return view('admin.recurrances.create');
+        return view('admin.addons.create');
     }
 
     /**
@@ -37,17 +37,11 @@ class RecurrencesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'frequency' => 'required'
-        ]);
-
-       $plans = new Recurrance;
-       $plans->name=$request->name;
-       $plans->frequency = $request->frequency;
-       $plans->save();
-       Session::flash('message', 'Recurrance inserted successfuly!');
-       return redirect('recurrances');
+        $addon = new Addon;
+        $addon->name = $request->name;
+        $addon->save();
+        Session::flash('message', 'Addons inserted successfuly!');
+        return redirect()->back();
     }
 
     /**
@@ -56,9 +50,9 @@ class RecurrencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($addon)
     {
-        //
+        return redirect('addons');
     }
 
     /**
@@ -67,10 +61,10 @@ class RecurrencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($recurrance)
+    public function edit($addon)
     {
-        $plans = Recurrance::where("id", "=", $recurrance)->first();
-        return view('admin.recurrances.edit',compact('plans'));
+        $addons = Addon::where("id", "=", $addon)->first();
+        return view("admin.addons.edit", compact('addons'));
     }
 
     /**
@@ -80,18 +74,17 @@ class RecurrencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $recurrance)
+    public function update(Request $request, $addon)
     {
         $request->validate([
             'name' => 'required',
-            'frequency' => 'required'
         ]);
-        $plans = Recurrance::find($request->id);
-        $plans->name = $request->input('name');
-        $plans->frequency = $request->input('frequency');
-        $plans->save();
-        Session::flash('message', 'Recurrance updated successfuly!');
-        return redirect()->back();
+
+       $plans = Addon::find($request->id);
+       $plans->name=$request->name;
+       $plans->save();
+       Session::flash('message', 'Addon updated successfuly!');
+       return redirect()->back();
     }
 
     /**
@@ -100,9 +93,9 @@ class RecurrencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($recurrance)
+    public function destroy($addon)
     {
-        Recurrance::destroy($recurrance);
-        return redirect('recurrances');
+        Addon::destroy($addon);
+        return redirect('addons');
     }
 }

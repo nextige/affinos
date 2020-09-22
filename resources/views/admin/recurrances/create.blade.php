@@ -19,7 +19,6 @@
                                     <div class="col-md-6 text-right btn-margin">
                                         <a href="recurrence.html" class="btn btn-primary">
                                             < Back</a> </div> </div> <div class="panel-body">
-                                                <form>
                                                     <div class="panel-body">
                                                         <form method = "Post" action="{{route('recurrances.store')}}">
                                                         @csrf
@@ -32,13 +31,19 @@
                                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                                        @enderror    
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <label>Frequency (in months)</label>
+                                                                        <input type="text" class="form-control" id="frequency"  name="frequency" placeholder="Frequency">
+                                                                        @error('frequency')
+                                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                                       @enderror    
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <button type="submit" class="btn btn-primary">Add
                                                                 Recurrence</button>
                                                         </form>
                                                     </div>
-                                                </form>
                                     </div>
                                 </div>
 

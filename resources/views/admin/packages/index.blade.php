@@ -28,7 +28,7 @@
                                                     <th class="p-price">Price</th>
                                                     <th class="p-subscription">Recurrence</th>
                                                     <th class="p-headline">Headline</th>
-                                                    <th class="p-additional">Additional user</th>
+                                                    <th class="p-additional">Additional user Price</th>
                                                     <th class="p-description">Description</th>
                                                     <th class="p-action">Actions</th>
                                                 </tr>
@@ -40,8 +40,8 @@
                                                     <td>{{$package->price}}</td>
                                                     <td>{{$package->recurrance->name}}</td>
                                                     <td>{{$package->headline}}</td>
-                                                    <td>{{$package->additonal_user}}</td>
-                                                    <td>{{$package->description}}</td>
+                                                    <td>{{$package->additional_user }}</td>
+                                                    <td>{!! $package->description !!}</td>
                                                     <td>
                                                         <a href="{{route('packages.edit', ['package' => $package->id])}}" class="btn btn-primary btn-addon btn-sm" >
                                                             <i class="fa fa-pencil"></i>
@@ -55,8 +55,6 @@
                                                         </form>
                                                         <a class="btn btn-success btn-addon btn-sm" href=""> <i
                                                                 class="fa fa-eye"></i></a>
-                                                        <a class="btn btn-danger btn-addon btn-sm " href="{{route('packages.destroy', ['package' => $package->id])}}"><i
-                                                                class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                                

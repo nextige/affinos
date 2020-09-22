@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Package;
 use App\Recurrance;
 use Session;
+use App\Addon;
+use App\PackageAddonPrice;
 
 class PackagesController extends Controller
 {
@@ -28,7 +30,8 @@ class PackagesController extends Controller
     public function create()
     {
         $recurrances = Recurrance::all();
-        return view('admin.packages.create', compact('recurrances'));
+        $addons = Addon::all();
+        return view('admin.packages.create', compact('recurrances', 'addons'));
     }
 
     /**
@@ -39,15 +42,6 @@ class PackagesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'recurrance_id'=> 'required',
-            'headline' => 'required',
-            'description' =>'required',
-            'additional_user'=>'required',
-        ]);
-
        $plans = new Package;
        $plans->name=$request->name;
        $plans->price=$request->price;
@@ -56,6 +50,17 @@ class PackagesController extends Controller
        $plans->description=$request->description;
        $plans->additional_user=$request->additional_user;
        $plans->save();
+       if ($request->addon_name && $request->packageprice) {
+        foreach($request->addon_name as $index => $addon_id) {
+            if($addon_id && $request->packageprice[$index]) {
+                $packageAddonPrice = new PackageAddonPrice;
+                $packageAddonPrice->addon_id = $addon_id;
+                $packageAddonPrice->package_id = $plans->id;
+                $packageAddonPrice->price = $request->packageprice[$index];
+                $packageAddonPrice->save();
+            }
+        }
+       }
        Session::flash('message', 'Package inserted successfuly!');
        return redirect('packages');
     }
@@ -81,7 +86,9 @@ class PackagesController extends Controller
     {
         $package = Package::where("id", "=", $package)->first();
         $recurrances = Recurrance::all();
-        return view("admin.packages.edit", compact('package', 'recurrances'));
+        $addons = Addon::all();
+        $addedAddons = PackageAddonPrice::where('package_id', '=', $package->id)->get();
+        return view("admin.packages.edit", compact('package', 'recurrances', 'addons', 'addedAddons'));
     }
 
     /**
@@ -110,8 +117,22 @@ class PackagesController extends Controller
        $plans->description=$request->description;
        $plans->additional_user=$request->additional_user;
        $plans->save();
-       Session::flash('message', 'Package updated successfuly!');
-       return redirect()->back();
+       if ($request->addon_name && $request->packageprice) {
+            foreach($request->addon_name as $index => $addon_id) {
+                if($addon_id && $request->packageprice[$index]) {
+                    if ($index == 0) {
+                        PackageAddonPrice::where('package_id', '=', $request->id)->delete();
+                    }
+                    $packageAddonPrice = new PackageAddonPrice;
+                    $packageAddonPrice->addon_id = $addon_id;
+                    $packageAddonPrice->package_id = $request->id;
+                    $packageAddonPrice->price = $request->packageprice[$index];
+                    $packageAddonPrice->save();
+                }
+            }
+       }
+        Session::flash('message', 'Package updated successfuly!');
+        return redirect()->back();
     }
 
     /**
@@ -124,5 +145,21 @@ class PackagesController extends Controller
     {
         Package::destroy($package);
         return redirect('packages');
+    }
+
+    /*
+    * FRONT END METHODS
+    */
+    public function pricingPage() {
+        $packages = Package::all();
+        $packagesToReturn = [];
+        foreach($packages as $package) {
+            if (count($packagesToReturn) == 0 || !$packagesToReturn[$package->recurrance->name]) {
+                $packagesToReturn[$package->recurrance->name] = [$package];
+            } else {
+                array_push($packagesToReturn[$package->recurrance->name], $package);    
+            }
+        }
+        return view('frontend.pricingpage', compact('packagesToReturn'));
     }
 }

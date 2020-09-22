@@ -115,7 +115,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="addons.html">
+                            <a href="{{url('/addons')}}">
                                 <i class="menu-icon icon-folder-plus"></i><span>Addons</span>
                             </a>
                         </li>

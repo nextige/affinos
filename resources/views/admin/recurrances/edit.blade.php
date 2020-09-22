@@ -20,7 +20,6 @@
                                     <div class="col-md-6 text-right btn-margin">
                                         <a href="recurrence.html" class="btn btn-primary">
                                             < Back</a> </div> </div> <div class="panel-body">
-                                                <form>
                                                     <div class="panel-body">
                                                         <form action ="{{route('recurrances.update',  ['recurrance' => $plans->id])}}" method="post">
                                                             <input type="hidden" name="_method" value="PUT">
@@ -30,8 +29,17 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Name</label>
-                                                                        <input type="text" class="form-control"
+                                                                        <input name="name" type="text" class="form-control"
                                                                         value = '{{ $plans->name }}'>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Frequency (in months)</label>
+                                                                        <input type="text" class="form-control" id="frequency"  name="frequency" value="{{$plans->frequency}}" placeholder="Frequency">
+                                                                        @error('frequency')
+                                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                                       @enderror    
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -39,7 +47,6 @@
                                                                 Recurrence</button>
                                                         </form>
                                                     </div>
-                                                </form>
                                     </div>
                                 </div>
 

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recurrance extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'frequency'];
 }

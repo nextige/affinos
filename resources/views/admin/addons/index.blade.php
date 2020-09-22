@@ -11,11 +11,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="panel-heading clearfix">
-                                            <h4 class="panel-title">Recurrence</h4>
+                                            <h4 class="panel-title">Addons</h4>
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-right btn-margin">
-                                        <a href="{{route('recurrances.create')}}" class="btn btn-primary">Add Recurrence</a>
+                                        <a href="{{route('addons.create')}}" class="btn btn-primary">Add Addons</a>
                                     </div>
                                 </div>
                                 <div class="panel-body">
@@ -23,26 +23,24 @@
                                         <table class="table table-bordered display" id="example">
                                             <thead>
                                                 <tr>
-                                                    <th class="p-id">Title</th>
-                                                    <th class="p-id">Frequency(in months)</th>
+                                                    <th class="p-id">Name</th>
                                                     <th class="r-action">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($recurrances as $recurrance) 
+                                                @foreach($addons as $addon) 
                                                 <tr>
-                                                    <th>{{$recurrance->name}}</th>
-                                                    <th>{{$recurrance->frequency}}</th>
+                                                    <th>{{$addon->name}}</th>
                                                     <td>
-                                                        <a class="btn btn-primary btn-addon btn-sm" href="{{route('recurrances.edit', ['recurrance' => $recurrance->id])}}">
+                                                        <a class="btn btn-primary btn-addon btn-sm" href="{{route('addons.edit', ['addon' => $addon->id])}}">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <form action ="{{route('recurrances.destroy', ['recurrance' => $recurrance->id])}}" method="post">
+                                                        <form action ="{{route('addons.destroy', ['addon' => $addon->id])}}" method="post">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
-                                                        </form>
-                                                        <a class="btn btn-danger btn-addon btn-sm " href="{{route('recurrances.destroy', ['recurrance' => $recurrance->id])}}"><i
+                                                            <button type="submit" class="btn btn-danger btn-addon btn-sm "><i
                                                                 class="fa fa-trash"></i></a>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

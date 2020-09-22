@@ -35,3 +35,8 @@ Route::resource('/profile','ProfileController');
 
 Route::resource('/packages', PackagesController::class);
 Route::resource('/recurrances', RecurrencesController::class);
+Route::resource('/addons', AddonsController::class);
+
+//routes on frontend
+Route::get('/pricing', 'PackagesController@pricingPage');
+Route::get('/processprincing/{id}', 'CheckoutController@processPricing')->name('processprincing');
