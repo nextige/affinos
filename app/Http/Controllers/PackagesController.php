@@ -42,6 +42,15 @@ class PackagesController extends Controller
      */
     public function store(Request $request)
     {
+    
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'recurrance_id'=> 'required',
+            'headline' => 'required',
+            'description' =>'required',
+            'additional_user'=>'required',
+        ]);
        $plans = new Package;
        $plans->name=$request->name;
        $plans->price=$request->price;

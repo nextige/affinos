@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use DB;
+use Auth;
+use App\Address;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +26,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    
     /**
      * Where to redirect users after registration.
      *
@@ -39,6 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        
     }
 
     /**
@@ -63,11 +67,22 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {    
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'cagecode' => $data['cagecode'],
+            'sams' => $data['sams'],
+            'city' => $data['city'],
+            'zip' => $data['zip'],
+            'state' => $data['state'],
+            'country' => $data['country'],
+            'address' => $data['address']
         ]);
     }
+    
+    
 }

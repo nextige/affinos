@@ -120,7 +120,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="users.html">
+                            <a href="{{ route('users.index') }}">
                                 <i class="menu-icon icon-users"></i><span>Users</span>
                             </a>
                         </li>
@@ -243,8 +243,7 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 <li class="dropdown user-dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"><span>John
-                                            Doe</span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"><span></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ url('/profile') }}">Profile</a></li>
                                         <li><a href="{{ url('/logout') }}">Log Out</a></li>

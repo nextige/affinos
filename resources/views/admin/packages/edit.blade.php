@@ -2,7 +2,7 @@
 
 @section('content')
 @if(Session::has('message'))
-<p>{{ Session::get('message') }}</p>
+{{ Session::get('message') }}
 @endif
 
 <div class="page-inner no-page-title">
