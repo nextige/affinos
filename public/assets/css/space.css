@@ -4186,28 +4186,61 @@ body.error-page {
 .login-page {
     width: 100%;
     height: 100%;
-    background: url('http://via.placeholder.com/2880x1800?text=Background+Image') no-repeat center center fixed;
+    /* background: url('http://via.placeholder.com/2880x1800?text=Background+Image') no-repeat center center fixed; */
     background-size: cover;
     padding: 0px;
 }
 
+.login-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0 20px;
+}
+.login-head {
+    text-align: center;
+    padding: 30px 0;
+}
+.login-head img {
+    max-width: 290px;
+}
 .login-box {
-    width: 300px;
-    height: 100vh;
     background: #fff;
-    padding: 35px;
+    padding: 50px 60px;
+    margin: 0 auto;
+    max-width: 475px;
+    min-width: 475px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+.login-box.register-box {
+    max-width: 730px;
+    min-width: 730px;
+}
+.register-form {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.login-box.register-box .form-group {
+    display: inline-block;
+    margin: 0 10px 15px;
+    width: 46%;
+}
+.login-box.register-box .form-group.width-100 {
+    width: 100% !important;
 }
 
-@media (max-width: 768px) {
-    .login-box {
-        width: 100%;
-    }
+.form-group label {
+    text-transform: capitalize;
 }
 
 .login-title {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 35px;
+    text-align: center;
 }
 
 .login-title span {
@@ -4215,10 +4248,29 @@ body.error-page {
     font-size: 12px;
     opacity: .7;
 }
-
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.margin-top-15 {
+    margin-top: 15px;
+}
 .forgot-link {
     margin-top: 10px;
     display: inline-block;
+}
+.r-button-group {
+    width: 92%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.r-button-group .btn {
+    margin: 0 10px;
+    flex: 0 0 50%;
 }
 
 .lock-screen img {
@@ -4238,6 +4290,32 @@ body.error-page {
     margin-left: 10px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+@media(max-width:767px) {
+    .login-box.register-box .form-group {
+        width: 100%;
+    }
+    .login-box {
+        padding: 20px 25px 40px;
+        min-width: 290px;
+    }
+    .login-box.register-box {
+        max-width: 550px;
+        min-width: 300px;
+        padding: 25px;
+    }
+    .r-button-group .btn {
+        min-width: 96%;
+        margin-bottom: 15px;
+    }
+    .login-head img {
+        max-width: 200px;
+    }
+    .r-button-group {
+        width: 100%;
+        flex-direction: column;
+    }
 }
 
 
