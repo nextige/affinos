@@ -82,6 +82,12 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'address' => $data['address']
         ]);
+        $dataMail = array('name'=> $data['name']);
+        Mail::send('mail', $data, function($message) {
+            $message->to($data['email'], 'Affinos')->subject
+                ('User Registration');
+            $message->from('pshambhu91@gmail.com','Affinos');
+        });
     }
     
     

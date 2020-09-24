@@ -10,21 +10,16 @@ $address = \App\Address::all();
 <div class="page-container">
                 <!-- Page Inner -->
                 <div class="page-inner login-page">
-                    <div id="main-wrapper" class="container-fluid">
-                        <div class="row">
-                        <div class="col-sm-8 col-md-8 login-box-bg">
-                        <div class="logo-login">
-                            <img src="https://nextige.com/affinos/assets/icons/affinos-technology-logo.png" alt="" />
-                        </div>
-                           <div class="login-img">
-                                <img src="https://nextige.com/affinos/uploads/banners/home-background.jpg" alt="" />
-                           </div>
-                        </div>
-                            <div class="col-sm-4 col-md-4 login-box">
+                    <div id="main-wrapper" class="login-main-wrapper">
+                    <div class="login-wrapper-inr">
+                        <div class="login-head">
+                           <img src="https://nextige.com/affinos/assets/icons/affinos-technology-logo.png" alt="affinos_logo">
+                       </div>
+                            <div class="login-box register-box">
                                 <div class="d-flex align-items-center height-100">
                                 <div>
                                 <h4 class="login-title">{{ __('Register') }}</h4>
-                                <form method="POST" action="{{ route('register') }}">
+                                <form id="register-form" class="register-form" method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">{{ __('First Name') }}</label>
@@ -36,7 +31,6 @@ $address = \App\Address::all();
                                             </span>
                                         @enderror
                                     </div>
-
 
                         <div class="form-group">
 
@@ -124,7 +118,7 @@ $address = \App\Address::all();
                         </div>
                         <div class="form-group">
                             <label for="state">{{ __('state') }}</label>
-                            <select class="form-control" name="state">
+                            <select required class="form-control" name="state">
                             @foreach($address as $add)
                                 <option value="{{ $add->state_code }}">{{ $add->state }}</option>
                             @endforeach
@@ -139,7 +133,7 @@ $address = \App\Address::all();
                         </div>
                         <div class="form-group">
                             <label for="country">{{ __('country') }}</label>
-                            <select class="form-control" name="country">
+                            <select required class="form-control" name="country">
                             @foreach($address as $country)
                                 <option value="{{$country->country_code}}">{{ $country->country }}</option>
                             @endforeach
@@ -154,7 +148,7 @@ $address = \App\Address::all();
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group width-100">
                             <label for="address">{{ __('Address') }}</label>
                             <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
 
@@ -182,12 +176,11 @@ $address = \App\Address::all();
 
 
                                   
-
-                                    <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-
-                                    <a  class="btn btn-default" href="{{ route('login') }}">Back to Login</a>
+                        <div class="r-button-group">
+                            
+                        <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                          <a  class="btn btn-default" href="{{ route('login') }}">Back to Login</a>
+                        </div>
                                     
                                     <!-- <br>
                                     <a href="index.html" class="forgot-link">Forgot password?</a> -->
@@ -199,4 +192,9 @@ $address = \App\Address::all();
                     </div>
             </div><!-- /Page Content -->
         </div><!-- /Page Container -->
+@endsection
+@section('additionalscripts')
+    <script>
+        $("#register-form").validate();
+    </script>
 @endsection

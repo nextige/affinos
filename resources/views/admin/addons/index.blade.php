@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Addons</h3>
+</div>
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="col-md-12">
@@ -18,6 +21,18 @@
                                         <a href="{{route('addons.create')}}" class="btn btn-primary">Add Addons</a>
                                     </div>
                                 </div>
+                                @if(Session::has('message')) 
+                                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <p>{{ Session::get('message') }}</p>       
+                                </div>
+                                @endif
+                                @if(Session::has('error')) 
+                                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <p>{{ Session::get('error') }}</p>       
+                                </div>
+                                @endif 
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered display" id="example">

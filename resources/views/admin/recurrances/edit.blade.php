@@ -6,6 +6,9 @@
 @endif
 
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Recurrance / Edit</h3>
+</div>
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="col-md-12">
@@ -28,7 +31,7 @@
                                             @endif 
                                             <div class="panel-body">
                                                     <div class="panel-body">
-                                                        <form action ="{{route('recurrances.update',  ['recurrance' => $plans->id])}}" method="post">
+                                                        <form id="recurrance-form" action ="{{route('recurrances.update',  ['recurrance' => $plans->id])}}" method="post">
                                                             <input type="hidden" name="_method" value="PUT">
                                                             <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
                                                             <input type = "hidden" name = "id" value = "{{ $plans->id }}">
@@ -36,14 +39,14 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Name</label>
-                                                                        <input name="name" type="text" class="form-control"
+                                                                        <input required name="name" type="text" class="form-control"
                                                                         value = '{{ $plans->name }}'>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Frequency (in months)</label>
-                                                                        <input type="text" class="form-control" id="frequency"  name="frequency" value="{{$plans->frequency}}" placeholder="Frequency">
+                                                                        <input required type="text" class="form-control" id="frequency"  name="frequency" value="{{$plans->frequency}}" placeholder="Frequency">
                                                                         @error('frequency')
                                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                                        @enderror    
@@ -66,40 +69,9 @@
                 </div><!-- Main Wrapper -->
 
             </div><!-- /Page Inner -->
-
-
-<!-- <div class="page-inner">
-<div class="page-title d-flex align-items-center justify-content-center">
-    <h3 class="breadcrumb-header">Edit Recurrance</h3> 
-</div>
-<div id="main-wrapper">
-<div class="row">
-  <div class="col-sm-offset-2 col-sm-8">
-<div class="panel panel-white">
-  <div class="panel-body">
-
-
-
-<form action ="{{route('recurrances.update',  ['recurrance' => $plans->id])}}" method="post">
-<input type="hidden" name="_method" value="PUT">
-<input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
-<input type = "hidden" name = "id" value = "{{ $plans->id }}">
-<div class="form-group">
-      <label for="title">Name</label>
-    
-        <input type="text" class="form-control" id="name" placeholder="name" name="name" value = '{{ $plans->name }}'>
-      
-    </div>
-    <div class="form-group">        
-      <div class="text-center">
-        <button type="submit" class="btn btn-default btn-lg" >Update</button>
-      </div>
-    
-  </form>
-  </div>
-</div>
- 
-  </div>
-</div> -->
-
+@endsection
+@section('additionalscripts')
+    <script>
+        $("#recurrance-form").validate();
+    </script>
 @endsection

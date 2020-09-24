@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Package / Create</h3>
+</div>
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="col-md-12">
@@ -26,13 +29,13 @@
                                     @endif
                                     <div class="panel-body">
                                             <div class="panel-body">
-                                                <form method = "Post" action="{{route('packages.store')}}">
+                                                <form id="package-form" method = "Post" action="{{route('packages.store')}}" novalidate>
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Name</label>
-                                                                <input type="text"  name="name" id="name" class="form-control"
+                                                                <input type="text" required name="name" id="name" class="form-control"
                                                                     placeholder="Package Name">
                                                             </div>
                                                         </div>
@@ -42,7 +45,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Price</label>
-                                                                <input id="price" name="price"  type="text" class="form-control"
+                                                                <input id="price" required name="price"  type="text" class="form-control"
                                                                     placeholder="Package Price">
                                                             </div>
                                                         </div>
@@ -53,7 +56,7 @@
                                                         <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Recurrence</label>
-                                                            <select name="recurrance_id" id="recurrance_id" class="form-control">
+                                                            <select required name="recurrance_id" id="recurrance_id" class="form-control">
                                                                 @foreach($recurrances as $recurrance)
                                                                 <option value="{{$recurrance->id}}">{{$recurrance->name}}</option>
                                                                 @endforeach
@@ -63,20 +66,20 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Headline</label>
-                                                                <input type="text" name="headline" id="headline" class="form-control"
+                                                                <input required type="text" name="headline" id="headline" class="form-control"
                                                                     placeholder="Package Headline">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Description</label>
-                                                                <textarea id="description" name="description"  class="summernote"></textarea>
+                                                                <textarea required id="description" name="description"  class="summernote"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Additional user</label>
-                                                                <input type="text" name="additional_user" id="additional_user" class="form-control"
+                                                                <input required type="text" name="additional_user" id="additional_user" class="form-control"
                                                                     placeholder="Aditional User">
                                                                 
                                                             </div>
@@ -113,4 +116,9 @@
 
         </div><!-- /Page Content -->
     </div>
+@endsection
+@section('additionalscripts')
+    <script>
+        $("#package-form").validate();
+    </script>
 @endsection 

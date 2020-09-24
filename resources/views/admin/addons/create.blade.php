@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Addon / Create</h3>
+</div>
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="col-md-12">
@@ -26,13 +29,13 @@
                                 @endif
                                     <div class="panel-body">
                                             <div class="panel-body">
-                                                <form method = "Post" action="{{route('addons.store')}}">
+                                                <form id="addon-form" method = "Post" action="{{route('addons.store')}}">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Name</label>
-                                                                <input type="text"  name="name" id="name" class="form-control"
+                                                                <input required type="text"  name="name" id="name" class="form-control"
                                                                     placeholder="Addon Name">
                                                             </div>
                                                         </div>
@@ -60,4 +63,9 @@
         </div><!-- /Page Content -->
     </div>
 
+@endsection
+@section('additionalscripts')
+    <script>
+        $("#addon-form").validate();
+    </script>
 @endsection 

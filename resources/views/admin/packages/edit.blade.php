@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Package / Edit</h3>
+</div>
     <div id="main-wrapper">
         <div class="row">
             <div class="col-md-12">
@@ -25,7 +28,7 @@
                     @endif
                     <div class="panel-body">
                             <div class="panel-body">
-                                <form method="Post" action="{{route('packages.update',  ['package' => $package->id])}}">
+                                <form id="package-form" method="Post" action="{{route('packages.update',  ['package' => $package->id])}}" novalidate>
                                 <input type="hidden" name="_method" value="PUT">
                                 <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
                                 <input type = "hidden" name = "id" value = "{{ $package->id }}">
@@ -33,7 +36,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input  name="name" id="name" type="text" class="form-control"
+                                                <input required name="name" id="name" type="text" class="form-control"
                                                 value="{{$package->name}}">
                                             </div>
                                             @error('name')
@@ -122,10 +125,6 @@
                             </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
@@ -136,4 +135,10 @@
 </div><!-- /Page Content -->
 </div><!-- /Page Container -->
 
+@endsection
+
+@section('additionalscripts')
+    <script>
+        $("#package-form").validate();
+    </script>
 @endsection

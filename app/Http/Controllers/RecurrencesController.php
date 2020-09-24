@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Recurrance;
 use Session;
+use App\Package;
 
 class RecurrencesController extends Controller
 {
@@ -102,7 +103,13 @@ class RecurrencesController extends Controller
      */
     public function destroy($recurrance)
     {
-        Recurrance::destroy($recurrance);
+        $package = Package::where("recurrance_id", "=", $recurrance)->first();
+        if(!$package) {
+            Recurrance::destroy($recurrance);
+            Session::flash('message', 'Recurrance deleted successfuly!');    
+        } else {
+            Session::flash('error', "Recurrance can't be deleted as it is already in use with packages!");
+        }
         return redirect('recurrances');
     }
 }

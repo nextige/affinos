@@ -77,6 +77,11 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function allUsers() {
+        $users = User::all();
+        return view("admin.users.index", compact('users'));
+    }
+
 }
 
 

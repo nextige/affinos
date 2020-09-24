@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Addon;
 use Session;
+use App\PackageAddonPrice;
 
 class AddonsController extends Controller
 {
@@ -95,7 +96,13 @@ class AddonsController extends Controller
      */
     public function destroy($addon)
     {
-        Addon::destroy($addon);
+        $addonPackage = PackageAddonPrice::where("addon_id", "=", $addon)->first();
+        if (!$addonPackage) {
+            Addon::destroy($addon);
+            Session::flash('message', 'Addon deleted successfuly!'); 
+        } else {
+            Session::flash('error', "Addon can't be deleted as it is already in use with packages!");
+        }
         return redirect('addons');
     }
 }

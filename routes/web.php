@@ -17,11 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
-    Route::resource('products','ProductController');
-});
+// Route::group(['middleware' => ['auth']], function() {
+//     Route::resource('roles','RoleController');
+//     Route::resource('users','UserController');
+//     Route::resource('products','ProductController');
+// });
 
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -38,6 +38,7 @@ Route::post("updatepassword", "ProfileController@updatePassword")->name("updatep
 Route::resource('/packages', PackagesController::class);
 Route::resource('/recurrances', RecurrencesController::class);
 Route::resource('/addons', AddonsController::class);
+Route::get("/users", "ProfileController@allUsers")->name('allusers');
 
 //routes on frontend
 Route::get('/pricing', 'PackagesController@pricingPage');

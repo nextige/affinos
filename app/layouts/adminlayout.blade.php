@@ -41,6 +41,48 @@
         
         <!-- Page Container -->
         <div class="page-container">
+            <!-- Page Sidebar -->
+            <!-- <div class="page-sidebar">
+                <a class="logo-box" href="index.html">
+                    <span>
+                    <img style="width:100%;" src="{{url('/')}}/assets/images/affinos-technology-logo.png" alt="" />
+                    </span>
+                    <i class="hide-without-panel">
+                    <img style="width:100%;" src="{{url('/')}}/assets/images/icon.png" alt="" />
+                    </i>
+                    <i class="icon-close" id="sidebar-toggle-button-close"></i>
+                </a>
+                <div class="page-sidebar-inner">
+                    <div class="page-sidebar-menu">
+                        <ul class="accordion-menu">
+                            <li class="active-page">
+                                <a href="{{url('/home')}}">
+                                    <i class="menu-icon icon-home4"></i><span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/packages')}}">
+                                    <i class="menu-icon icon-show_chart"></i><span> Packages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/recurrances')}}">
+                                    <i class="menu-icon icon-show_chart"></i><span> Recurrances</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/pages')}}">
+                                    <i class="menu-icon icon-show_chart"></i><span>Pages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/sections')}}">
+                                    <i class="menu-icon icon-show_chart"></i><span>Page Sections</span>
+                                </a>
+                            </li>
+                    </div>
+                </div>
+            </div> -->
             <div class="page-sidebar">
             <a class="logo-box" href="index.html">
                 <span><img style="width:100%" src="https://www.nextige.com/affinos/assets/icons/affinos-technology-logo.png" alt=""></span>
@@ -50,36 +92,34 @@
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="page-sidebar-inner" style="overflow: hidden; width: auto; height: 100%;">
                 <div class="page-sidebar-menu">
                     <ul class="accordion-menu">
-                        <li @if(request()->segment(1) == 'profile') class="active-page" @endif>
+                        <li>
                             <a href="{{url('/profile')}}">
                                 <i class="menu-icon icon-user"></i><span>Profile</span>
                             </a>
                         </li>
-                        @if(Auth::check() && Auth::user()->id == 1)
-                        <li @if(request()->segment(1) == 'packages' || request()->segment(1) == 'recurrances') class="active-page" @endif>
+                        <li class="active-page">
                             <a href="javascript:void(0)">
                                 <i class="menu-icon icon-price-tag"></i><span>Packages
                                     <i class="accordion-icon fa fa-angle-left"></i>
                                 </span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
-                                <li class="animation @if(request()->segment(1) == 'packages') active-page @endif"><a href="{{url('/packages')}}">Packages</a></li>
-                                <li class="animation @if(request()->segment(1) == 'recurrances') active-page @endif"><a href="{{url('/recurrances')}}">Recurrence</a></li>
+                                <li class="animation"><a href="{{url('/packages')}}">Packages</a></li>
+                                <li class="animation"><a href="{{url('/recurrances')}}">Recurrence</a></li>
 
                             </ul>
                         </li>
-                        <li @if(request()->segment(1) == 'addons') class="active-page" @endif>
+                        <li>
                             <a href="{{url('/addons')}}">
                                 <i class="menu-icon icon-folder-plus"></i><span>Addons</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('allusers') }}">
+                            <a href="{{ route('users.index') }}">
                                 <i class="menu-icon icon-users"></i><span>Users</span>
                             </a>
                         </li>
-                        @endif
-                        <li>
+                        <li class="open">
                             <a href="payment.html">
                                 <i class="menu-icon icon-shield"></i><span>Payment </span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
@@ -106,6 +146,78 @@
             
             <!-- Page Content -->
             <div class="page-content">
+                <!-- Page Header -->
+                    <!-- <div class="page-header">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                Brand and toggle get grouped for better mobile display
+                                <div class="navbar-header">
+                                    <div class="logo-sm">
+                                        <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                                        <a class="logo-box" href="index.html"><span>Space</span></a>
+                                    </div>
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <i class="fa fa-angle-down"></i>
+                                    </button>
+                                </div>
+                            
+                                Collect the nav links, forms, and other content for toggling
+                            
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i class="fa fa-bars"></i></a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        
+                                        <li class="dropdown">
+                                            <ul class="dropdown-menu dropdown-lg dropdown-content">
+                                            
+                                            
+                                                    <ul class="list-unstyled dropdown-oc">
+                                                        <li>
+                                                            <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-photo"></i></span>
+                                                                <span class="notification-info">Finished uploading photos to gallery <b>"South Africa"</b>.
+                                                                    <small class="notification-date">20:00</small>
+                                                                </span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
+                                                                <span class="notification-info"><b>John Doe</b> mentioned you in a post "Update v1.5".
+                                                                    <small class="notification-date">06:07</small>
+                                                                </span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><span class="notification-badge bg-danger"><i class="fa fa-bolt"></i></span>
+                                                                <span class="notification-info">4 new special offers from the apps you follow!
+                                                                    <small class="notification-date">Yesterday</small>
+                                                                </span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><span class="notification-badge bg-success"><i class="fa fa-bullhorn"></i></span>
+                                                                <span class="notification-info">There is a meeting with <b>Ethan</b> in 15 minutes!
+                                                                    <small class="notification-date">Yesterday</small>
+                                                                </span></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown user-dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ url('/profile') }}">Profile</a></li>
+                                                <li><a href="#">Calendar</a></li>
+                                                <li><a href="#"><span class="badge pull-right badge-danger">42</span>Messages</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Account Settings</a></li>
+                                                <li><a href="{{ url('/logout') }}">Log Out</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div> -->
                 <div class="page-header">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
@@ -126,12 +238,7 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 <li class="dropdown user-dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        @if(Auth::check())
-                                            {{ Auth::user()->name }} {{ Auth::user()->last_name }} 
-                                        @endif
-                                        <img src="http://via.placeholder.com/36x36" alt="" class="img-circle"><span></span>
-                                    </a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://via.placeholder.com/36x36" alt="" class="img-circle"><span></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ url('/profile') }}">Profile</a></li>
                                         <li><a href="{{ url('/logout') }}">Log Out</a></li>
@@ -170,27 +277,13 @@
         <script src="{{url('/')}}/assets/js/jquery.datatables.min.js"></script>
         <script src="{{url('/')}}/assets/js/bootstrap-datepicker.js"></script>
         <script src="{{url('/')}}/assets/js/table-data.js"></script>
-        <script src="{{url('/')}}/assets/js/validate.js"></script>
+
+
+
+
    <!-- Javascripts -->
-      <script>
       
-          // Image Priview
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                        $('#imagePreview').hide();
-                        $('#imagePreview').fadeIn(650);
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            $("#imageUpload").change(function () {
-                readURL(this);
-            });
-      </script>
-       @yield('additionalscripts')
+       
      
 
     </body>

@@ -6,6 +6,9 @@
 @endif
 
 <div class="page-inner no-page-title">
+<div class="page-title">
+    <h3 class="breadcrumb-header">Addon / Edit</h3>
+</div>
     <div id="main-wrapper">
         <div class="row">
             <div class="col-md-12">
@@ -29,7 +32,7 @@
                     @endif
                     <div class="panel-body">
                             <div class="panel-body">
-                                <form method="Post" action="{{route('addons.update',  ['addon' => $addons->id])}}">
+                                <form id="addon-form" method="Post" action="{{route('addons.update',  ['addon' => $addons->id])}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
                                 <input type = "hidden" name = "id" value = "{{ $addons->id }}">
@@ -37,7 +40,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input  name="name" id="name" type="text" class="form-control"
+                                                <input required name="name" id="name" type="text" class="form-control"
                                                 value="{{$addons->name}}">
                                             </div>
                                             @error('name')
@@ -60,4 +63,9 @@
 
 </div><!-- /Page Content -->
 </div><!-- /Page Container -->
+@endsection
+@section('additionalscripts')
+    <script>
+        $("#addon-form").validate();
+    </script>
 @endsection

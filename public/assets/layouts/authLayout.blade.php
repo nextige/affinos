@@ -26,9 +26,8 @@
     <body>
                 @yield('content')
         
-                <script src="{{url('/')}}/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
-                <script src="{{url('/')}}/assets/js/validate.js"></script>
-                @yield('additionalscripts')
+        
+
 
 
 
