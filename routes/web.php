@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontEndController@index');
+Route::get('/features', 'FrontEndController@features');
+Route::get('/pricing', 'FrontEndController@pricing');
+Route::get('/customers', 'FrontEndController@customers');
+Route::get('/why', 'FrontEndController@why');
 
 // Route::group(['middleware' => ['auth']], function() {
 //     Route::resource('roles','RoleController');
@@ -41,5 +43,5 @@ Route::resource('/addons', AddonsController::class);
 Route::get("/users", "ProfileController@allUsers")->name('allusers');
 
 //routes on frontend
-Route::get('/pricing', 'PackagesController@pricingPage');
-Route::get('/processprincing/{id}', 'CheckoutController@processPricing')->name('processprincing');
+// Route::get('/pricing', 'PackagesController@pricingPage');
+// Route::get('/processprincing/{id}', 'CheckoutController@processPricing')->name('processprincing');

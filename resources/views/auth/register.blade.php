@@ -13,7 +13,9 @@ $address = \App\Address::all();
                     <div id="main-wrapper" class="login-main-wrapper">
                     <div class="login-wrapper-inr">
                         <div class="login-head">
-                           <img src="https://nextige.com/affinos/assets/icons/affinos-technology-logo.png" alt="affinos_logo">
+                        <a href="{{url('/')}}">
+                            <img src="{{url('/')}}/front-end/assets/icons/affinos-technology-logo.png" alt="affinos_logo">
+                        </a>
                        </div>
                             <div class="login-box register-box">
                                 <div class="d-flex align-items-center height-100">
