@@ -18,6 +18,7 @@ Route::get('/features', 'FrontEndController@features');
 Route::get('/pricing', 'FrontEndController@pricing');
 Route::get('/customers', 'FrontEndController@customers');
 Route::get('/why', 'FrontEndController@why');
+Route::get('/checkout/{id}', 'FrontEndController@checkout');
 
 // Route::group(['middleware' => ['auth']], function() {
 //     Route::resource('roles','RoleController');

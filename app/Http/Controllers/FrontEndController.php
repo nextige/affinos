@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Recurrance;
+use App\Package;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class FrontEndController extends Controller
     }
 
     public function pricing() {
-        return view('frontend.pricing');
+        $recurrances = Recurrance::all();
+        return view('frontend.pricing', compact('recurrances'));
     }
 
     public function customers() {
@@ -24,5 +27,11 @@ class FrontEndController extends Controller
 
     public function why() {
         return view('frontend.why');
+    }
+
+    public function checkout($id) {
+        $package = Package::find($id);
+        $recurrances = Recurrance::all();
+        return view('frontend.checkout', compact('package'));
     }
 }

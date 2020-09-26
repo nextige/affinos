@@ -42,8 +42,8 @@
         <!-- Page Container -->
         <div class="page-container">
             <div class="page-sidebar">
-            <a class="logo-box" href="index.html">
-                <span><img style="width:100%" src="https://www.nextige.com/affinos/assets/icons/affinos-technology-logo.png" alt=""></span>
+            <a class="logo-box" href="{{url('/profile')}}">
+                <span><img style="width:100%" src="{{url('/')}}/front-end/assets/icons/affinos-technology-logo.png" alt=""></span>
                 <!-- <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i> -->
                 <i class="icon-close" id="sidebar-toggle-button-close"></i>
             </a>

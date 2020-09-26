@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{url('/')}}/assets/images/favicon.ico">
 
     <title>Affinos Technology Group</title>
     <link rel="stylesheet" href="{{url('/')}}/front-end/assets/css/combined.css">
@@ -21,7 +21,7 @@
                         <a href="pricing.html" class="orange-btn">Get Affinos Now</a>
                     </div>
                     <div class="logo">
-                        <a href="index.html">                           
+                        <a href="{{url('/')}}">                           
                             <img src="{{url('/')}}/front-end/assets/icons/affinos-technology-logo.png" alt="affinos-technology"
                                 class="logo-white">
                                 <img src="{{url('/')}}/front-end/assets/icons/affinos-technology-logo.png" alt="affinos-technology"
@@ -83,7 +83,7 @@
                                     </g>
                                 </svg>
                                 <strong class="text-uppercase">Sign In</strong></a></li>
-                        <li><a href="pricing.html" class="orange-btn">Get Affinos Now</a></li>
+                        <li><a href="{{url('/pricing')}}" class="orange-btn">Get Affinos Now</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,26 +103,26 @@
                 <div class="col-lg-2 col-md-6 mb-20">
                     <ul class="list-unstyled mt-0 pl-0 mb-0">
                         <li>
-                            <h3 class="mb-15"><a href="features.html" class="white">Affinos Features</a></h3>
+                            <h3 class="mb-15"><a href="{{url('/features')}}" class="white">Affinos Features</a></h3>
                         </li>
-                        <li><a href="features.html#relevance-engine" class="grey smol">AI-Powered Relevance Engine</a>
+                        <li><a href="{{url('/features')}}#relevance-engine" class="grey smol">AI-Powered Relevance Engine</a>
                         </li>
-                        <li><a href="features.html#database" class="grey smol">Largest Database of Bids</a></li>
-                        <li><a href="features.html#email-notifications" class="grey smol">Daily Email Notifications</a>
+                        <li><a href="{{url('/features')}}#database" class="grey smol">Largest Database of Bids</a></li>
+                        <li><a href="{{url('/features')}}#email-notifications" class="grey smol">Daily Email Notifications</a>
                         </li>
-                        <li><a href="features.html#search-tools" class="grey smol">Advanced Search Tools</a></li>
-                        <li><a href="features.html#bid-summary" class="grey smol">Easy-to-Review Bid Summary</a></li>
-                        <li><a href="features.html#periscope-agency-network" class="grey smol">Periscope Agency
+                        <li><a href="{{url('/features')}}#search-tools" class="grey smol">Advanced Search Tools</a></li>
+                        <li><a href="{{url('/features')}}#bid-summary" class="grey smol">Easy-to-Review Bid Summary</a></li>
+                        <li><a href="{{url('/features')}}#periscope-agency-network" class="grey smol">Periscope Agency
                                 Network</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 ">
                     <ul class="list-unstyled mt-0 pl-0 mb-0">
                         <li>
-                            <h3><a href="customers.html" class="white mb-15 inline-block">Customers</a></h3>
+                            <h3><a href="{{url('/customers')}}" class="white mb-15 inline-block">Customers</a></h3>
                         </li>
                         <li>
-                            <h3><a href="pricing.html" class="white mb-15 inline-block">Pricing</a></h3>
+                            <h3><a href="{{url('/pricing')}}" class="white mb-15 inline-block">Pricing</a></h3>
                         </li>
                         <li>
                             <h3><a href="" class="white mb-15 inline-block">Compare Plans</a></h3>
@@ -132,10 +132,10 @@
                 <div class="col-lg-2 col-md-6 mb-20">
                     <ul class="list-unstyled mt-0 pl-0 mb-0">
                         <li>
-                            <h3><a href="why-affinos.html" class="white mb-15 inline-block">Why Affinos</a></h3>
+                            <h3><a href="{{url('/why')}}" class="white mb-15 inline-block">Why Affinos</a></h3>
                         </li>
                         <li>
-                            <h3><a href="" class="white mb-15 inline-block">Sign In</a></h3>
+                            <h3><a href="{{url('/login')}}" class="white mb-15 inline-block">Sign In</a></h3>
                         </li>
                     </ul>
 
@@ -172,5 +172,6 @@
     <script src="{{url('/')}}/front-end/assets/js/slick.min.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/verify-email-v2.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/app.js"></script>
+    @yield('additionalscript')
 </body>
 </html>
