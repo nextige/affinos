@@ -6525,3 +6525,153 @@ p {
 @media (max-width: 767px) {
 
 }
+
+/* swith css */
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #145fa1;
+  border-radius: 1em;
+  margin-right: 10px;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: #FFF;
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+
+
+.modal-head-inr {
+  text-align: center;
+}
+.modal-head-img img {
+  max-width: 225px;
+}
+.modal-head-inr h4 {
+  padding: 10px 0 5px;
+  color: #004d96;
+  font-weight: 600;
+}
+.modal-body-inr {
+  padding: 15px 30px;
+}
+.payment-nav {
+  padding: 0;
+  margin-bottom: 0;
+}
+.payment-nav .payment-tab {
+  display: inline-block;
+}
+.payment-tab a {
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: rgb(0 77 150 / 0.5);
+  border-radius: 50%;
+}
+.payment-tab.active a {
+  background: rgb(0 77 150);
+}
+.year-value-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 15px;
+  height: 50px;
+}
+.year-value-panel h5 {
+  margin: 0;
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+}
+.year-value-panel h5 span {
+  font-size: 20px;
+}
+.modal-body {
+  background: #ededed;
+}
+.payment-form .form-field input {
+  width: 100%;
+  margin-bottom: 2px;
+  padding: 10px 15px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+}
+.no-full-field  {
+ display: flex;
+ justify-content: space-between;
+}
+.no-full-field input {
+  width: 50% !important;
+  margin: 0 1px;
+}
+.switch-field {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  height: 50px;
+}
+.switch-field label {
+  margin-bottom: 0;
+  color: #959595;
+  font-weight: 500;
+  font-size: 16px;
+}
+.next-btn {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.form-field select {
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 2px;
+  height: 50px;
+}
+.no-full-field select {
+  margin: 0 1px 2px;
+}
+.form-field select:focus {
+  outline: none !important;
+}
+.next-btn .orange-btn {
+  padding: 12px 20px;
+}
+.close.modal-close {
+  font-size: 32px;
+  color: #004d96;
+  opacity: 1;
+}
+.close.modal-close:hover {
+  color: #004d96;
+  opacity: 0.8;
+  transition: 300ms all;
+}
+.close.modal-close:focus {
+  outline:0;
+}

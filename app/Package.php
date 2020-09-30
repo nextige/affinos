@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\PackageAddonPrice;
 
 class Package extends Model
 {
@@ -11,5 +12,9 @@ class Package extends Model
     public function recurrance()
     {
         return $this->hasOne('App\Recurrance', 'id', "recurrance_id");
+    }
+
+    public function addons() {
+        return $this->hasMany(PackageAddonPrice::class);
     }
 }

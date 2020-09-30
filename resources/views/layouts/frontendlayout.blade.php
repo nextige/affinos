@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{url('/')}}/assets/images/favicon.ico">
 
     <title>Affinos Technology Group</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('/')}}/front-end/assets/css/combined.css">
     <link rel="stylesheet" href="{{url('/')}}/front-end/assets/css/fonts.css">
 </head>
@@ -168,10 +169,12 @@
     </footer>
 
     <script src="{{url('/')}}/front-end/assets/js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/roi-calculator.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/slick.min.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/verify-email-v2.js"></script>
     <script src="{{url('/')}}/front-end/assets/js/app.js"></script>
+    <script src="{{url('/')}}/assets/js/validate.js"></script>
     @yield('additionalscript')
 </body>
 </html>

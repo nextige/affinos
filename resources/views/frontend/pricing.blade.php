@@ -43,7 +43,7 @@
                     <div class="mb-20">
                         {!! $package->description !!}
                     </div>
-                    <a class="long-btn" href="{{url('/checkout')}}/{{ $package->id }}">Get Affinos Pro</a>
+                    <a class="long-btn" href="{{url('/checkout')}}/{{ $package->id }}">Get {{ $package->name }}</a>
                 </div>
             </div>
             @endforeach

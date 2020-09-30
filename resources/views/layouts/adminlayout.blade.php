@@ -79,17 +79,12 @@
                             </a>
                         </li>
                         @endif
-                        <li>
-                            <a href="payment.html">
+                        <li @if(request()->segment(1) == 'all-orders') class="active-page" @endif>
+                            <a href="javascript:void(0)">
                                 <i class="menu-icon icon-shield"></i><span>Payment </span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
                             <ul class="sub-menu" style="display: block;">
-                                <li class="animation"><a href="form-elements.html">Elements</a></li>
-                                <li class="animation"><a href="form-wizard.html">Form Wizard</a></li>
-                                <li class="animation"><a href="form-file-upload.html">File Upload</a></li>
-                                <li class="animation"><a href="form-image-crop.html">Image Crop</a></li>
-                                <li class="animation"><a href="form-image-zoom.html">Image Zoom</a></li>
-                                <li class="animation"><a href="form-x-editable.html">X-editable</a></li>
+                                <li class="animation"><a href="{{url('all-orders')}}">All Orders</a></li>
                             </ul>
                         </li>
                         <li>
