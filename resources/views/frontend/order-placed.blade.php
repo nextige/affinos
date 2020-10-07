@@ -8,12 +8,22 @@
     </div>
 
     <div class="medium-container mt-60 mb-50">
-        <div>
-            order id: {{$order->id}} <br />
-            Plan Name: {{$order->package->name}} <br />
-            Subscription Type: {{$order->package->recurrance->name}} <br />
-            Total Amount:  {{$order->order_total}} <br />
-            Additional Users: {{$order->additional_qty}}
+        <div class="order-placed-sec">
+            <h3 class="h1 mb-40">Order Detail</h3>
+           <div class="row">
+               <div class="col-md-7">
+                <ul>
+                <li><p class="large">order id: {{$order->id}}</p></li>
+                <li><p class="large">Plan Name: {{$order->package->name}}</p></li>
+                <li><p class="large">Subscription Type: {{$order->package->recurrance->name}}</p></li>
+                <li><p class="large"> Total Amount:  {{$order->order_total}}</p></li>
+                <li><p class="large">Additional Users: {{$order->additional_qty}}</p></li>
+            </ul>
+           </div>
+           <div class="col-md-5">
+            <a href="{{url('view-order') . "/" . $order->id}}" class="big-orange-btn large-btn mb-md-20 text-center">View Details</a>
+           </div>
+           </div>
         </div>
     </div>
     <div class="container mb-100 mt-100 mt-sm-40 mb-sm-40">

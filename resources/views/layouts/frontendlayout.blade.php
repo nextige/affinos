@@ -66,7 +66,9 @@
                             }
                         </style>
 
-                        <li><a href="{{url('/login')}}" class="white p-5 pt-15 pb-15 mr-15 nowrap">
+                        <li>
+                            @if(!Auth::check())
+                            <a href="{{url('/login')}}" class="white p-5 pt-15 pb-15 mr-15 nowrap">
                                 <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     class="profile">
@@ -83,7 +85,28 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <strong class="text-uppercase">Sign In</strong></a></li>
+                                <strong class="text-uppercase">Sign In</strong></a>
+                            @else 
+                            <a href="{{url('/profile')}}" class="white p-5 pt-15 pb-15 mr-15 nowrap">
+                                <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    class="profile">
+                                    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Nav-Overlay" transform="translate(-996.000000, -17.000000)"
+                                            fill="#FFFFFF">
+                                            <g id="sign-in" transform="translate(996.000000, 13.000000)">
+                                                <g id="Page-1" transform="translate(0.000000, 4.000000)">
+                                                    <path
+                                                        d="M7.9996,13.7618 C5.9996,13.7618 4.2376,12.7188 3.1986,11.1988 C3.1986,9.6018 6.3976,8.7188 7.9996,8.7188 C9.6026,8.7188 12.8016,9.6018 12.8016,11.1988 C11.7626,12.7188 9.9996,13.7618 7.9996,13.7618 M7.9996,2.3978 C9.3586,2.3978 10.3976,3.4408 10.3976,4.8008 C10.3976,6.1598 9.3586,7.1998 7.9996,7.1998 C6.6416,7.1998 5.6026,6.1598 5.6026,4.8008 C5.6026,3.4408 6.6416,2.3978 7.9996,2.3978 M7.9996,-0.0002 C3.6026,-0.0002 -0.0004,3.6018 -0.0004,7.9998 C-0.0004,12.3978 3.6026,15.9998 7.9996,15.9998 C12.3976,15.9998 15.9996,12.3978 15.9996,7.9998 C15.9996,3.6018 12.3976,-0.0002 7.9996,-0.0002"
+                                                        id="Fill-1"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <strong class="text-uppercase">Profile</strong></a>
+                            @endif
+                        </li>
                         <li><a href="{{url('/pricing')}}" class="orange-btn">Get Affinos Now</a></li>
                     </ul>
                 </div>
@@ -136,7 +159,11 @@
                             <h3><a href="{{url('/why')}}" class="white mb-15 inline-block">Why Affinos</a></h3>
                         </li>
                         <li>
-                            <h3><a href="{{url('/login')}}" class="white mb-15 inline-block">Sign In</a></h3>
+                            @if(!Auth::check())
+                                <h3><a href="{{url('/login')}}" class="white mb-15 inline-block">Sign In</a></h3>
+                            @else
+                                <h3><a href="{{url('/profile')}}" class="white mb-15 inline-block">Profile</a></h3>
+                            @endif
                         </li>
                     </ul>
 

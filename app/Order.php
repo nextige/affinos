@@ -16,4 +16,8 @@ class Order extends Model
     public function recurrance() {
         return $this->hasOne('App\Recurrance', 'id', "recurrance_id");
     }
+
+    public function user() {
+        return $this->hasOne('App\User', 'id', "user_id");
+    }
 }

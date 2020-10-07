@@ -56,8 +56,8 @@
                      </div>
                      <form class="payment-form" method="post" id="account-details" onsubmit="event.preventDefault()" novalidate>
                         <div class="form-field no-full-field">
-                           <input type="text" required name="name" placeholder="First Name">
-                           <input type="text" required name="last_name" placeholder="Last Name">
+                           <input type="text" value="{{$user ? $user->name : ''}}" required name="name" placeholder="First Name">
+                           <input type="text" value="{{$user ? $user->last_name : ''}}" required name="last_name" placeholder="Last Name">
                         </div>
                         <div class="form-field">
                            <input type="email" required name="email" value="{{$checkout['user']['email']}}" placeholder="Email">
@@ -66,11 +66,11 @@
                            <input type="text" name="company" placeholder="Company">
                         </div>
                         <div class="form-field">
-                           <input type="text" required name="phone" placeholder="phone">
+                           <input type="text" value="{{$user ? $user->phone : ''}}" required name="phone" placeholder="phone">
                         </div>
                         <div class="form-field">
                            <select required name="industry">
-                              <option disable="disable" value="">Pick an option</option>
+                              <option disable="disable" value="">Company Type</option>
                               <option value="Administrative and Support and Waste Management and Remediation Services">Administrative and Support and Waste Management and Remediation Services</option>
                               <option value="Agriculture, Forestry, Fishing and Hunting">Agriculture, Forestry, Fishing and Hunting</option>
                               <option value="Mining">Mining</option>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-field">
                            <select required name="company_size">
-                              <option disable="disable" value="">Pick an option</option>
+                              <option disable="disable" value="">Company Size</option>
                               <option value="1-50">1-50</option>
                               <option value="51-100">51-100</option>
                               <option value="101-250">101-250</option>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-field">
                            <select required name="revenue">
-                              <option selected="selected" disable="disable" value="">Pick an option</option>
+                              <option selected="selected" disable="disable" value="">Revenue</option>
                               <option value="$0-$500K">$0-$500K</option>
                               <option value="$500K-$1M">$500K-$1M</option>
                               <option value="$1M-$10M">$1M-$10M</option>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-field">
                            <select required name="registration_reason">
-                              <option selected="selected" disable="disable" value="">Pick an option</option>
+                              <option selected="selected" disable="disable" value="">Reason to register Affinos</option>
                               <option value="One Specific Solicitation - Registration is Required by Government Agency to Respond">One Specific Solicitation - Registration is Required by Government Agency to Respond</option>
                               <option value="Government Agency - Registration is Required to View and Respond to all Solicitations">Government Agency - Registration is Required to View and Respond to all Solicitations</option>
                               <option value="New to Government Selling - Just Exploring What Opportunities are Out there for my Business">New to Government Selling - Just Exploring What Opportunities are Out there for my Business</option>
@@ -139,27 +139,27 @@
                      </div>
                      <form class="payment-form" method="post" id="address-form" onsubmit="event.preventDefault()" novalidate>
                         <div class="form-field no-full-field">
-                           <input type="text" name="name" required placeholder="First Name">
-                           <input type="text" name="last_name" required placeholder="Last Name">
+                           <input type="text" value="{{$user ? $user->name : ''}}" name="name" required placeholder="First Name">
+                           <input type="text" value="{{$user ? $user->last_name : ''}}" name="last_name" required placeholder="Last Name">
                         </div>
                         <div class="form-field">
-                           <input type="text" name="address_1" required placeholder="Address Line 1">
+                           <input type="text" value="{{$user ? $user->address : ''}}" name="address_1" required placeholder="Address Line 1">
                         </div>
                         <div class="form-field">
                            <input type="text" name="address_2" placeholder="Address Line 2">
                         </div>
                         <div class="form-field no-full-field">
-                           <input type="text" required name="city" placeholder="City">
-                           <input type="text" required name="zip" placeholder="zip">
+                           <input type="text" value="{{$user ? $user->city : ''}}" required name="city" placeholder="City">
+                           <input type="text" value="{{$user ? $user->zip : ''}}" required name="zip" placeholder="zip">
                         </div>
                         <div class="form-field no-full-field">
                            <select name="country" required>
-                              <option value="">Pick an option</option>
-                              <option value="CA">United States</option>
-                              <option value="CA">Canada</option>
+                              <option value="">Country</option>
+                              <option @if($user && $user->country == 'US') selected @endif value="US">United States</option>
+                              <option @if($user && $user->country == 'CA') selected @endif value="CA">Canada</option>
                            </select>
                            <select name="states" required>
-                              <option value="">pick an option</option>
+                              <option value="">State</option>
                               @foreach($states as $state)
                                 <option value="{{$state->state_code}}">{{$state->name}}</option>
                               @endforeach
@@ -184,25 +184,27 @@
                      </div>
                      <div id="paymentResponse"></div>
                     <form action="{{ url('process-payment') }}" method="post" id="paymentFrm">
-                        <div class="form-group">
-                            <label>CARD NUMBER</label>
+                        <div class="form-field">
+                            <!--<label>CARD NUMBER</label>-->
                             <div id="card_number" class="field"></div>
                         </div>
-                        <div class="row">
+                        <div class="input-50">
                             <div class="left">
-                                <div class="form-group">
-                                    <label>EXPIRY DATE</label>
+                                <div class="">
+                                    <!--<label>EXPIRY DATE</label>-->
                                     <div id="card_expiry" class="field"></div>
                                 </div>
                             </div>
                             <div class="right">
-                                <div class="form-group">
-                                    <label>CVC CODE</label>
+                                <div class="">
+                                    <!--<label>CVC CODE</label>-->
                                     <div id="card_cvc" class="field"></div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="payBtn">Submit Payment</button>
+                        <div class="next-btn">
+                            <button type="submit" class="orange-btn next-btn" id="payBtn">Submit Payment</button>
+                        </div>
                     </form>
                   </div>
                </div>
@@ -241,8 +243,9 @@
                         fontWeight: 400,
                         fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
                         fontSize: '16px',
-                        lineHeight: '1.4',
+                        lineHeight: '50px',
                         color: '#555',
+                        padding: '15px',
                         backgroundColor: '#fff',
                         '::placeholder': {
                             color: '#888',

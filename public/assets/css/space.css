@@ -4848,3 +4848,49 @@ body.error-page {
     font-weight: bold;
     font-size: 12px;
 }
+
+/*order detail page */
+.order-box {
+    margin-bottom: 30px;
+}
+.order-head {
+    margin: 0;
+    background: #004d96;
+    color: #fff;
+    padding: 13px;
+    font-size: 16px;
+}
+.order-box-border {
+    border: 1px solid #ddd;
+}
+.order-box-border th, .order-box-border td {
+    border: none !important;
+}
+.address-detail {
+    padding: 0;
+    margin: 0;
+    padding: 15px;
+}
+.address-detail li {
+  list-style: none;
+    color: #000;
+    font-size: 14px;
+}
+.height-auto {
+    height:auto !important;
+}
+.success-batch {
+    background: #167d10;
+    padding: 5px 15px;
+    color: #fff;
+    border-radius: 15px;
+    vertical-align: text-bottom;
+}
+
+/*order placed page*/
+.order-placed-sec {
+    margin: 0 auto;
+    max-width: 550px;
+    border: 1px solid #ddd;
+    padding: 30px;
+}

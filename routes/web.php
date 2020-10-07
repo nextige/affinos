@@ -24,6 +24,7 @@ Route::post('/continue-checkout', 'FrontEndController@continueCheckOut');
 Route::get('/payment', 'FrontEndController@payment');
 Route::any('/process-payment', 'FrontEndController@processPayment');
 Route::get("/order-placed/{id}", 'FrontEndController@orderPlaced');
+Route::post("/checkout-login", 'FrontEndController@login');
 
 // Route::group(['middleware' => ['auth']], function() {
 //     Route::resource('roles','RoleController');
@@ -32,21 +33,22 @@ Route::get("/order-placed/{id}", 'FrontEndController@orderPlaced');
 // });
 
 Auth::routes();
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/sections','SectionController');
+    Route::resource('/pages','PageController');
+    Route::resource('/profile','ProfileController');
+    Route::post("profileavtar", "ProfileController@avatar")->name("profileavtar");
+    Route::post("updatepassword", "ProfileController@updatePassword")->name("updatepassword");
+    Route::resource('/packages', PackagesController::class);
+    Route::resource('/recurrances', RecurrencesController::class);
+    Route::resource('/addons', AddonsController::class);
+    Route::get("/users", "ProfileController@allUsers")->name('allusers');
+    Route::get("/all-orders", "OrderController@index")->name('allorders');
+    Route::get("/view-order/{id}", "OrderController@view")->name('vieworder');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/sections','SectionController');
-
-Route::resource('/pages','PageController');
-Route::resource('/profile','ProfileController');
-Route::post("profileavtar", "ProfileController@avatar")->name("profileavtar");
-Route::post("updatepassword", "ProfileController@updatePassword")->name("updatepassword");
-
-Route::resource('/packages', PackagesController::class);
-Route::resource('/recurrances', RecurrencesController::class);
-Route::resource('/addons', AddonsController::class);
-Route::get("/users", "ProfileController@allUsers")->name('allusers');
 
 //routes on frontend
 // Route::get('/pricing', 'PackagesController@pricingPage');

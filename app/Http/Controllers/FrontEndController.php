@@ -16,8 +16,11 @@ use App\OrderBillingAddress;
 use App\OrderShippingAddress;
 use App\PackageAddonPrice;
 use Exception;
-use Mail;
+// use Mail;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
@@ -157,7 +160,12 @@ class FrontEndController extends Controller
             "publishable_key" => "pk_test_TYooMQauvdEDq54NiTphI7jx",
         ];
         Stripe::setApiKey($stripe['secret_key']);
-        return view("frontend.payment", compact('checkout', 'states', 'stripe'));
+        if (Auth::check()) {
+            $user = Auth::user();
+        } else {
+            $user = "";
+        }
+        return view("frontend.payment", compact('checkout', 'states', 'stripe', 'user'));
     }
 
     public function processPayment(Request $request) {
@@ -343,11 +351,32 @@ class FrontEndController extends Controller
             "country" => $addressDetails["country"],
             "order_id" => $order->id,
         ]);
+        Mail::to($accountDetails["email"])->send(new OrderPlaced($order));
         return $order->id;
     }
 
     public function orderPlaced($id) {
         $order = Order::find($id);
         return view("frontend.order-placed", compact('order'));
+    }
+
+    public function login(Request $request) {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+        $response = array(
+            "status" => "failed",
+            "message" => "Password not matched fot the email you have entered."
+        );
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = User::where("email", "=", $request->email)->first();
+            $response = array(
+                "status" => "success",
+                "userId" => $user->id
+            );
+        }
+        return json_encode($response);
     }
 }

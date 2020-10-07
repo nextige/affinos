@@ -40,7 +40,7 @@
                     </span>
 
                     <h5 class="orange mb-10">{{ $package->headline }}</h5>
-                    <div class="mb-20">
+                    <div class="mb-20 text-center">
                         {!! $package->description !!}
                     </div>
                     <a class="long-btn" href="{{url('/checkout')}}/{{ $package->id }}">Get {{ $package->name }}</a>
